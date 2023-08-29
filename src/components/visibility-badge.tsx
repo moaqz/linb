@@ -7,7 +7,7 @@ function VisibilityBadge(props: VisibilityBadgeProps) {
 
   return (
     <span
-      className={`shadow-[2px_3px_#000] rounded px-2 py-1 font-semibold text-white ${
+      className={`shadow-[2px_3px_#000] border-2 border-black rounded px-2 py-1 font-semibold text-white ${
         isPrivate ? "bg-red-700" : "bg-green-700"
       }`}
     >
