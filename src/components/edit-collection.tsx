@@ -2,16 +2,9 @@
 
 import { editCollection } from "@/actions/edit-collection-action";
 import { toast } from "react-hot-toast";
+import { EditCollectionType } from "@/lib/validations";
 
-function EditCollection({
-  id,
-  visibility,
-  name,
-}: {
-  id: number;
-  visibility: "private" | "public" | null;
-  name: string;
-}) {
+function EditCollection({ id, visibility, name }: EditCollectionType) {
   const editCollectionHandler = async (data: FormData) => {
     try {
       await editCollection(data);
@@ -27,50 +20,36 @@ function EditCollection({
       className="flex flex-col max-w-md gap-4"
       action={editCollectionHandler}
     >
-      <div>
-        <input
-          type="text"
-          id="collection_id"
-          name="collection_id"
-          value={id}
-          hidden
-        />
-      </div>
+      <input type="text" id="id" name="id" defaultValue={id} hidden disabled />
 
       <div>
-        <label
-          htmlFor="collection_name"
-          className="text-sm font-semibold mb-1 block"
-        >
+        <label htmlFor="name" className="text-sm font-semibold mb-1 block">
           Collection name
         </label>
         <input
           type="text"
-          id="collection_name"
-          name="collection_name"
+          id="name"
+          name="name"
           defaultValue={name}
-          className="w-full border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
+          className="w-full border-2 border-black p-2 placeholder:text-black/70 focus:outline-double"
         />
       </div>
 
       <div>
         <label
-          htmlFor="collection_visibility"
+          htmlFor="visibility"
           className="text-sm font-semibold mb-1 block"
         >
           Visibility
         </label>
         <select
-          name="collection_visibility"
-          id="collection_visibility"
-          className="w-full border-2 bg-white border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
+          name="visibility"
+          id="visibility"
+          defaultValue={visibility}
+          className="w-full border-2 bg-white border-black p-2 placeholder:text-black/70 focus:outline-double"
         >
-          <option value="private" selected={visibility === "private"}>
-            Private
-          </option>
-          <option value="public" selected={visibility === "public"}>
-            Public
-          </option>
+          <option value="private">Private</option>
+          <option value="public">Public</option>
         </select>
       </div>
 

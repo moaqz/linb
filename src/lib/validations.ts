@@ -1,13 +1,33 @@
-const specialCharsRegex = /[!@#$%^&*()><?":\-_]/;
+import {
+  Input,
+  enumType,
+  maxLength,
+  minLength,
+  number,
+  object,
+  string,
+} from "valibot";
 
-export function validateCollectionName(s: string): string | null {
-  if (s.length > 50) {
-    return "Collection name must be 50 characters or less.";
-  }
+export const EditCollectionSchema = object({
+  id: number(),
+  name: string([
+    minLength(1, "Collection name cannot be empty."),
+    maxLength(50, "Collection name should be 50 characters or fewer."),
+  ]),
+  visibility: enumType(["private", "public"]),
+});
 
-  if (specialCharsRegex.test(s)) {
-    return "Collection name cannot contain special characters.";
-  }
+export type EditCollectionType = Input<typeof EditCollectionSchema>;
 
-  return null;
-}
+export const CreateCollectionSchema = object({
+  name: string([
+    minLength(1, "Collection name cannot be empty."),
+    maxLength(50, "Collection name should be 50 characters or fewer."),
+  ]),
+});
+
+export type CreateCollectionType = Input<typeof CreateCollectionSchema>;
+
+export const DeleteCollectionSchema = object({
+  id: number(),
+});

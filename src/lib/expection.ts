@@ -5,12 +5,3 @@ export class AuthRequiredError extends Error {
     this.name = "AuthRequiredError";
   }
 }
-
-export class ValidationError extends Error {
-  constructor(errorMsg: string) {
-    super(errorMsg);
-
-    this.stack = undefined;
-    this.name = "ValidationError";
-  }
-}

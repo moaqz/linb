@@ -23,7 +23,7 @@ function DeleteCollection({ collectionId }: { collectionId: number }) {
 
       closeDialog();
       router.push("/collections");
-      
+
       toast.success("Collection deleted successfully");
     } catch (error) {
       closeDialog();

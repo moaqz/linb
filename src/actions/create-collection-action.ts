@@ -1,11 +1,12 @@
 "use server";
 
-import { AuthRequiredError, ValidationError } from "@/lib/expection";
-import { validateCollectionName } from "@/lib/validations";
+import { AuthRequiredError } from "@/lib/expection";
+import { CreateCollectionSchema } from "@/lib/validations";
 import { db } from "@/server/connection";
 import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
 import { revalidatePath } from "next/cache";
+import { ValiError, parse } from "valibot";
 
 export const createCollection = async (data: FormData) => {
   const user = await currentUser();
@@ -13,25 +14,26 @@ export const createCollection = async (data: FormData) => {
     throw new AuthRequiredError();
   }
 
-  const name = data.get("collection_name");
-  if (name === null || typeof name !== "string") {
-    throw new ValidationError("Collection name cannot be empty.");
-  }
-
-  const validationError = validateCollectionName(name);
-  if (validationError) {
-    throw new ValidationError(validationError);
-  }
-
   try {
+    const { name } = parse(CreateCollectionSchema, {
+      name: data.get("collection_name"),
+    });
+
     await db.insert(collections).values({
       user_id: user.id,
       name: name,
     });
-
-    revalidatePath("/collections");
-    return;
   } catch (error) {
-    throw new Error("There was an error.");
+    if (error instanceof ValiError) {
+      return {
+        error: error.message,
+      };
+    }
+
+    return {
+      error: "Something went wrong!",
+    };
   }
+
+  revalidatePath("/collections");
 };
