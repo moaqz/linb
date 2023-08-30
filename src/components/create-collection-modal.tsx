@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { createCollection } from "@/actions/create-collection-action";
 import { toast } from "react-hot-toast";
 
-function CreateCollectionModal() {
+function CreateCollectionModal({ totalRecords }: { totalRecords: number }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -33,12 +33,13 @@ function CreateCollectionModal() {
   };
 
   return (
-    <div title="Create collection">
+    <div>
       <button
         className="px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
         onClick={showModal}
+        disabled={totalRecords >= 5}
       >
-        Create collection
+        Create collection ({totalRecords}/5)
       </button>
 
       <dialog
@@ -71,8 +72,9 @@ function CreateCollectionModal() {
             type="text"
             name="collection_name"
             placeholder="Collection name (max 50 characters)"
-            // maxLength={50}
-            // required
+            minLength={1}
+            maxLength={50}
+            required
             aria-invalid={errorMessage ? true : false}
             className="border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
           />

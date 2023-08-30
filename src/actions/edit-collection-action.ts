@@ -35,9 +35,13 @@ export const editCollection = async (data: FormData) => {
     return;
   } catch (error) {
     if (error instanceof ValiError) {
-      console.log(error);
+      return {
+        error: error.message,
+      };
     }
 
-    throw new Error("There was an error.");
+    return {
+      error: "Something went wrong!",
+    };
   }
 };

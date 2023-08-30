@@ -6,13 +6,14 @@ import { EditCollectionType } from "@/lib/validations";
 
 function EditCollection({ id, visibility, name }: EditCollectionType) {
   const editCollectionHandler = async (data: FormData) => {
-    try {
-      await editCollection(data);
+    const response = await editCollection(data);
 
-      toast.success("Collection updated!");
-    } catch (error) {
-      toast.error("Something went wrong");
+    if (response?.error) {
+      toast.error(response.error);
+      return;
     }
+
+    toast.success("Collection updated!");
   };
 
   return (
@@ -20,7 +21,13 @@ function EditCollection({ id, visibility, name }: EditCollectionType) {
       className="flex flex-col max-w-md gap-4"
       action={editCollectionHandler}
     >
-      <input type="text" id="id" name="id" defaultValue={id} hidden disabled />
+      <input
+        type="number"
+        id="id"
+        name="id"
+        defaultValue={id}
+        hidden
+      />
 
       <div>
         <label htmlFor="name" className="text-sm font-semibold mb-1 block">

@@ -14,7 +14,7 @@ export const EditCollectionSchema = object({
     minLength(1, "Collection name cannot be empty."),
     maxLength(50, "Collection name should be 50 characters or fewer."),
   ]),
-  visibility: enumType(["private", "public"]),
+  visibility: enumType(["private", "public"], "Invalid visibility value."),
 });
 
 export type EditCollectionType = Input<typeof EditCollectionSchema>;

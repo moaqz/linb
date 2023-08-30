@@ -5,7 +5,7 @@ import { db } from "@/server/connection";
 
 import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 async function fetchCollections() {
   const user = await currentUser();
@@ -21,6 +21,7 @@ async function fetchCollections() {
       user_id: collections.user_id,
       created_at: collections.created_at,
       visibility: collections.visiblity,
+      collection_count: sql<number>`(SELECT COUNT(*) FROM collections WHERE user_id = ${user.id})`,
     })
     .from(collections)
     .where(eq(collections.user_id, user.id))
@@ -33,8 +34,10 @@ async function Collections() {
   return (
     <section>
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Collections</h2>
-        <CreateCollectionModal />
+        <h2 className="text-xl sm:text-2xl font-semibold">Collections</h2>
+        <CreateCollectionModal
+          totalRecords={collections?.[0]?.collection_count}
+        />
       </div>
       <CollectionList collections={collections} />
     </section>
