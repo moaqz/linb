@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
 
 export default function Error({
   error,
@@ -10,15 +9,13 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+  const isAuthError = error instanceof TypeError;
 
   return (
     <main className="h-screen w-full grid place-content-center space-y-4 text-center">
       <p className="text-xl">There was a problem</p>
       <h1 className="text-4xl font-bold balance">
-        {error.message || "Something went wrong"}
+        {isAuthError ? error.message : "Something went wrong"}
       </h1>
 
       <div className="flex items-center justify-center gap-2">
