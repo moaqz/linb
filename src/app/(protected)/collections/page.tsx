@@ -1,9 +1,11 @@
 import CollectionList from "@/components/collection-list";
 import CreateCollectionModal from "@/components/create-collection-modal";
 import { AuthRequiredError } from "@/lib/expection";
+import { db } from "@/server/connection";
 
-import { getUserCollections } from "@/server/queries/collections";
+import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
+import { eq } from "drizzle-orm";
 
 async function fetchCollections() {
   const user = await currentUser();
@@ -12,7 +14,17 @@ async function fetchCollections() {
     throw new AuthRequiredError();
   }
 
-  return getUserCollections(user.id);
+  return await db
+    .select({
+      id: collections.id,
+      name: collections.name,
+      user_id: collections.user_id,
+      created_at: collections.created_at,
+      visibility: collections.visiblity,
+    })
+    .from(collections)
+    .where(eq(collections.user_id, user.id))
+    .limit(5);
 }
 
 async function Collections() {
