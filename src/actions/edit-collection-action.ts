@@ -28,7 +28,7 @@ export const editCollection = async (data: FormData) => {
       .update(collections)
       .set({
         name: name,
-        visiblity: visibility,
+        visibility: visibility,
       })
       .where(and(eq(collections.id, id), eq(collections.user_id, user.id)));
 

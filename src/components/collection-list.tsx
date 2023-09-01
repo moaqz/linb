@@ -15,7 +15,7 @@ async function CollectionList({ collections }: { collections: Collection[] }) {
         <tr className="border-2 border-black [&>th]:p-2 [&>th]:text-start">
           <th>Name</th>
           <th className="hidden sm:table-cell">Created at</th>
-          <th>Visiblity</th>
+          <th>Visibility</th>
           <th></th>
         </tr>
       </thead>

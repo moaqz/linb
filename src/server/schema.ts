@@ -7,12 +7,12 @@ import {
   timestamp,
 } from "drizzle-orm/pg-core";
 
-export const visiblityEnum = pgEnum("visiblity", ["public", "private"]);
+export const visibilityEnum = pgEnum("visibility", ["public", "private"]);
 
 export const collections = pgTable("collections", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  visiblity: visiblityEnum("visibility").notNull().default("private"),
+  visibility: visibilityEnum("visibility").notNull().default("private"),
   user_id: text("user_id").notNull(),
   created_at: timestamp("created_at").notNull().defaultNow(),
   updated_at: timestamp("updated_at").notNull().defaultNow(),

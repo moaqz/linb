@@ -20,7 +20,7 @@ async function fetchCollections() {
       name: collections.name,
       user_id: collections.user_id,
       created_at: collections.created_at,
-      visibility: collections.visiblity,
+      visibility: collections.visibility,
       collection_count: sql<number>`(SELECT COUNT(*) FROM collections WHERE user_id = ${user.id})`,
     })
     .from(collections)

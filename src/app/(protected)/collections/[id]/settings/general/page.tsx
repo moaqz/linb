@@ -17,7 +17,7 @@ export async function getCollectionInformation(id: number) {
     .select({
       id: collections.id,
       name: collections.name,
-      visibility: collections.visiblity,
+      visibility: collections.visibility,
     })
     .from(collections)
     .where(and(eq(collections.id, id), eq(collections.user_id, user.id)));
