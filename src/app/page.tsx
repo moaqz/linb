@@ -1,77 +1,53 @@
 import { currentUser } from "@clerk/nextjs/server";
-import Link from "next/link";
+import Link from "@/features/ui/link";
+import Logo from "@/features/ui/logo";
 
 async function Page() {
   const user = await currentUser();
 
   return (
-    <>
-      <header className="mb-6 border-b-2 border-b-black bg-white">
+    <div className="h-screen grid grid-rows-[auto_1fr_auto]">
+      <header className="border-b-2 border-b-black bg-white">
         <div className="max-w-screen-lg mx-auto flex items-center justify-between p-4">
-          <Link href="/" className="text-2xl font-bold">
-            Linb
-          </Link>
+          <Logo />
 
           {user ? (
-            <Link
-              href="/collections"
-              className="px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
-            >
-              Go to Collections
-            </Link>
+            <Link href="/collections">Go to Collections</Link>
           ) : (
-            <Link
-              href="/sign-up"
-              className="px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
-            >
-              Sign in
-            </Link>
+            <Link href="/sign-up">Sign in</Link>
           )}
         </div>
       </header>
 
-      <main className="max-w-screen-lg mx-auto px-4">
-        <div className="text-center mt-40 sm:text-left max-w-xl">
-          <h1 className="text-4xl sm:text-5xl font-semibold balance">
+      <main className="w-full max-w-screen-lg mx-auto px-4">
+        <div className="mt-40 text-left max-w-sm sm:max-w-xl">
+          <h1 className="text-4xl sm:text-5xl font-semibold">
             Find your Favorite websites in seconds
           </h1>
 
-          <p className="my-6 text-lg balance">
+          <p className="my-6 text-lg">
             A Simple and Intuitive Bookmarking Application to Organize Your
             Links.
           </p>
 
-          <Link
-            href="/collections"
-            className="w-fit px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
-          >
-            Get Started
-          </Link>
+          <Link href="/collections">Get Started</Link>
         </div>
       </main>
 
-      <footer className="w-full px-2 py-6 absolute bottom-0 text-center text-sm">
-        <p className="text-sm">
+      <footer className="max-w-screen-lg mx-auto w-full px-2 sm:px-4 py-6">
+        <p className="text-sm [&>a]:font-medium [&>a]:underline [&>a]:underline-offset-4">
           Crafted by{" "}
-          <a
-            className="font-medium underline underline-offset-4"
-            href="https://github.com/moaqz"
-            target="_blank"
-          >
+          <a href="https://github.com/moaqz" target="_blank">
             moaqz
           </a>
           . The source code is on{" "}
-          <a
-            target="_blank"
-            className="font-medium underline underline-offset-4"
-            href="https://github.com/moaqz/linb"
-          >
+          <a target="_blank" href="https://github.com/moaqz/linb">
             Github
           </a>
           .
         </p>
       </footer>
-    </>
+    </div>
   );
 }
 
