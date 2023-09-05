@@ -5,13 +5,7 @@ import { XMarkIcon } from "./ui/icons";
 import { toast } from "react-hot-toast";
 import { useSWRConfig } from "swr";
 
-function CreateLinkDialog({
-  collectionId,
-  page,
-}: {
-  collectionId: string;
-  page: number;
-}) {
+function CreateLinkDialog({ collectionId }: { collectionId: string }) {
   const { mutate } = useSWRConfig();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -52,7 +46,7 @@ function CreateLinkDialog({
     formRef.current?.reset();
     closeModal();
 
-    mutate(`/api/collections/${collectionId}/links?page=${page}`);
+    mutate(`/api/collections/${collectionId}/links?page=1`);
     toast.success("Collection created succesfully.");
   };
 

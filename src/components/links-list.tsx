@@ -11,6 +11,7 @@ import {
 } from "./ui/icons";
 import LinkCardSkeleton from "./skeletons/link-card-skeleton";
 import Image from "next/image";
+import { useState } from "react";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -117,15 +118,8 @@ function Pagination(props: IPagination) {
   );
 }
 
-function LinksList({
-  collectionId,
-  page,
-  updatePage,
-}: {
-  collectionId: string;
-  page: number;
-  updatePage: (n: number) => void;
-}) {
+function LinksList({ collectionId }: { collectionId: string }) {
+  const [page, setPage] = useState(1);
   const { data, isLoading } = useSWR<LinksResponse>(
     `/api/collections/${collectionId}/links?page=${page}`,
     fetcher,
@@ -133,6 +127,10 @@ function LinksList({
       revalidateOnFocus: false,
     },
   );
+
+  const updatePage = (n: number) => {
+    setPage(n);
+  };
 
   if (isLoading || !data) {
     return (
