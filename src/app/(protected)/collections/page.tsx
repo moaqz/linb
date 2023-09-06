@@ -1,4 +1,3 @@
-import CollectionList from "@/components/collection-list";
 import CreateCollectionModal from "@/components/create-collection-modal";
 import { AuthRequiredError } from "@/lib/expection";
 import { db } from "@/server/connection";
@@ -6,6 +5,7 @@ import { db } from "@/server/connection";
 import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
 import { eq, sql } from "drizzle-orm";
+import CollectionTable from "@collections/components/collection-table";
 
 async function fetchCollections() {
   const user = await currentUser();
@@ -39,7 +39,8 @@ async function Collections() {
           totalRecords={collections?.[0]?.collection_count}
         />
       </div>
-      <CollectionList collections={collections} />
+
+      <CollectionTable collections={collections} />
     </section>
   );
 }
