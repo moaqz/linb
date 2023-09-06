@@ -29,7 +29,7 @@ function CreateCollection({ totalRecords }: { totalRecords: number }) {
   return (
     <div>
       <Button onClick={() => setIsOpen(true)} disabled={totalRecords >= 5}>
-        Create collection ({totalRecords <= 0 ? totalRecords : 0}/5)
+        Create collection ({totalRecords == null ? 0 : totalRecords}/5)
       </Button>
 
       <Modal
