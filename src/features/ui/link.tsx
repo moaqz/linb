@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-function Link(props: Props) {
+export function Link(props: Props) {
   return (
     <NextLink
       className="inline-flex gap-1 px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px_#000] transition-shadow hover:shadow-none"
@@ -15,5 +15,3 @@ function Link(props: Props) {
     />
   );
 }
-
-export default Link;

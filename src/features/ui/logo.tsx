@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Logo() {
+export function Logo() {
   return (
     <Link href="/" className="text-2xl font-bold">
       Linb
@@ -8,4 +8,3 @@ function Logo() {
   );
 }
 
-export default Logo;
