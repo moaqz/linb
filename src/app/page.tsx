@@ -1,6 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
-import Link from "@/features/ui/link";
-import Logo from "@/features/ui/logo";
+import { Link, Logo } from "@/features/ui";
 
 async function Page() {
   const user = await currentUser();

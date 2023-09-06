@@ -1,7 +1,6 @@
 import {
   Input,
   enumType,
-  is,
   maxLength,
   minLength,
   minValue,
@@ -21,15 +20,6 @@ export const EditCollectionSchema = object({
 });
 
 export type EditCollectionType = Input<typeof EditCollectionSchema>;
-
-export const CreateCollectionSchema = object({
-  name: string([
-    minLength(1, "Collection name cannot be empty."),
-    maxLength(50, "Collection name should be 50 characters or fewer."),
-  ]),
-});
-
-export type CreateCollectionType = Input<typeof CreateCollectionSchema>;
 
 export const DeleteCollectionSchema = object({
   id: number(),

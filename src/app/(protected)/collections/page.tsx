@@ -1,43 +1,15 @@
-import CreateCollectionModal from "@/components/create-collection-modal";
-import { AuthRequiredError } from "@/lib/expection";
-import { db } from "@/server/connection";
-
-import { collections } from "@/server/schema";
-import { currentUser } from "@clerk/nextjs";
-import { eq, sql } from "drizzle-orm";
 import CollectionTable from "@collections/components/collection-table";
-
-async function fetchCollections() {
-  const user = await currentUser();
-
-  if (user == null) {
-    throw new AuthRequiredError();
-  }
-
-  return await db
-    .select({
-      id: collections.id,
-      name: collections.name,
-      user_id: collections.user_id,
-      created_at: collections.created_at,
-      visibility: collections.visibility,
-      collection_count: sql<number>`(SELECT COUNT(*) FROM collections WHERE user_id = ${user.id})`,
-    })
-    .from(collections)
-    .where(eq(collections.user_id, user.id))
-    .limit(5);
-}
+import { getUserCollections } from "@/features/collections/queries";
+import CreateCollection from "@collections/components/create-collection";
 
 async function Collections() {
-  const collections = await fetchCollections();
+  const collections = await getUserCollections();
 
   return (
     <section>
       <div className="flex items-center justify-between">
         <h2 className="text-xl sm:text-2xl font-semibold">Collections</h2>
-        <CreateCollectionModal
-          totalRecords={collections?.[0]?.collection_count}
-        />
+        <CreateCollection totalRecords={collections?.[0]?.collection_count} />
       </div>
 
       <CollectionTable collections={collections} />

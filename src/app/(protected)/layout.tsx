@@ -1,4 +1,4 @@
-import Header from "@/features/ui/header";
+import { Header } from "@/features/ui";
 import { Toaster } from "react-hot-toast";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
