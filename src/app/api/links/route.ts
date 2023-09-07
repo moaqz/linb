@@ -1,8 +1,9 @@
-import { CreateLinkSchema } from "@/lib/validations";
 import { db } from "@/server/connection";
 import { links } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
+
 import { ValiError, parse } from "valibot";
+import { CreateLinkSchema } from "@/features/links/validations";
 
 export async function POST(request: Request) {
   const user = await currentUser();
