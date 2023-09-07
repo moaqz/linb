@@ -10,13 +10,8 @@ import {
   LinkCard,
   LinksErrorState,
 } from "@/features/links/components";
-import { Link } from "../types";
+import { LinksResponse } from "../types";
 import { fetcher } from "../fetcher";
-
-type LinksResponse = {
-  links: Link[];
-  totalPages: number;
-};
 
 export function LinksList({ collectionId }: { collectionId: string }) {
   const [page, setPage] = useState(1);
@@ -66,7 +61,14 @@ export function LinksList({ collectionId }: { collectionId: string }) {
     <>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
         {data.links.map((link) => {
-          return <LinkCard key={link.id} {...link} />;
+          return (
+            <LinkCard
+              key={link.id}
+              link={link}
+              currentPage={page}
+              collectionId={collectionId}
+            />
+          );
         })}
       </div>
       <Pagination

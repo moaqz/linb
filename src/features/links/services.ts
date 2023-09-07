@@ -30,3 +30,15 @@ export async function createLinkService({
 
   return;
 }
+
+export async function deleteLinkService(id: number) {
+  const res = await fetch(`/api/links/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    throw new Error("Unable to delete the link.");
+  }
+
+  return;
+}

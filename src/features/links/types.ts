@@ -3,3 +3,8 @@ export type Link = {
   name: string;
   url: string;
 };
+
+export type LinksResponse = {
+  links: Link[];
+  totalPages: number;
+};
