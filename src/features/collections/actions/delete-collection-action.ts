@@ -1,15 +1,15 @@
 "use server";
 
 import { AuthRequiredError } from "@/lib/expection";
-import { DeleteCollectionSchema } from "@/lib/validations";
 import { db } from "@/server/connection";
 import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { parse } from "valibot";
+import { DeleteCollectionSchema } from "../validations";
 
-export const deleteCollection = async (data: FormData) => {
+export const deleteCollectionAction = async (data: FormData) => {
   const user = await currentUser();
   if (user == null) {
     throw new AuthRequiredError();

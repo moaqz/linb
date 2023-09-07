@@ -1,4 +1,4 @@
-import SettingsSidebar from "@/components/settings-sidebar";
+import { SettingsSidebar } from "@/features/collections/components";
 
 function SettingsLayout({
   children,
@@ -9,7 +9,7 @@ function SettingsLayout({
 }) {
   return (
     <div className="grid gap-5 sm:grid-cols-[auto_1fr]">
-      <SettingsSidebar id={params.id} />
+      <SettingsSidebar collectionId={params.id} />
       {children}
     </div>
   );

@@ -1,12 +1,18 @@
 "use client";
 
-import { editCollection } from "@/actions/edit-collection-action";
 import { toast } from "react-hot-toast";
-import { EditCollectionType } from "@/lib/validations";
 
-function EditCollection({ id, visibility, name }: EditCollectionType) {
+import { EditCollectionType } from "../validations";
+import { Button } from "@/features/ui";
+import { editCollectionAction } from "../actions/edit-collection-action";
+
+export function EditCollectionForm({
+  id,
+  visibility,
+  name,
+}: EditCollectionType) {
   const editCollectionHandler = async (data: FormData) => {
-    const response = await editCollection(data);
+    const response = await editCollectionAction(data);
 
     if (response?.error) {
       toast.error(response.error);
@@ -21,13 +27,7 @@ function EditCollection({ id, visibility, name }: EditCollectionType) {
       className="flex flex-col max-w-md gap-4"
       action={editCollectionHandler}
     >
-      <input
-        type="number"
-        id="id"
-        name="id"
-        defaultValue={id}
-        hidden
-      />
+      <input type="number" id="id" name="id" defaultValue={id} hidden />
 
       <div>
         <label htmlFor="name" className="text-sm font-semibold mb-1 block">
@@ -38,6 +38,9 @@ function EditCollection({ id, visibility, name }: EditCollectionType) {
           id="name"
           name="name"
           defaultValue={name}
+          required
+          maxLength={50}
+          minLength={1}
           className="w-full border-2 border-black p-2 placeholder:text-black/70 focus:outline-double"
         />
       </div>
@@ -60,14 +63,9 @@ function EditCollection({ id, visibility, name }: EditCollectionType) {
         </select>
       </div>
 
-      <button
-        type="submit"
-        className="w-fit px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
-      >
-        Save
-      </button>
+      <div>
+        <Button type="submit">Save</Button>
+      </div>
     </form>
   );
 }
-
-export default EditCollection;
