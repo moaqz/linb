@@ -1,7 +1,7 @@
-import CreateLinkDialog from "@/components/create-link-dialog";
-import LinksList from "@/components/links-list";
-import { ArrowLongLeftIcon } from "@/components/ui/icons";
 import Link from "next/link";
+
+import { LinksList, CreateLinkModal } from "@/features/links/components";
+import { ArrowLongLeftIcon } from "@/features/ui";
 
 function Page({ params }: { params: { id: string } }) {
   return (
@@ -9,12 +9,17 @@ function Page({ params }: { params: { id: string } }) {
       <div className="flex items-center justify-between mb-4">
         <Link
           href="/collections"
-          className="text-xl sm:text-2xl font-semibold inline-flex items-center gap-1 transition-all hover:underline"
+          className="group text-xl sm:text-2xl font-semibold inline-flex items-center gap-1"
         >
-          <ArrowLongLeftIcon width={24} height={24} />
-          Collections
+          <ArrowLongLeftIcon
+            className="group-hover:-translate-x-1 group-hover:transition-transform"
+            width={24}
+            height={24}
+          />
+          <span>Collections</span>
         </Link>
-        <CreateLinkDialog collectionId={params.id} />
+
+        <CreateLinkModal collectionId={params.id} />
       </div>
 
       <LinksList collectionId={params.id} />

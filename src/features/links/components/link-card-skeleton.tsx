@@ -1,4 +1,4 @@
-function LinkCardSkeleton() {
+export function LinkCardSkeleton() {
   return (
     <div
       role="status"
@@ -10,5 +10,3 @@ function LinkCardSkeleton() {
     </div>
   );
 }
-
-export default LinkCardSkeleton;
