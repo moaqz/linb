@@ -18,7 +18,6 @@ export const collections = pgTable(
     visibility: visibilityEnum("visibility").notNull().default("private"),
     user_id: text("user_id").notNull(),
     created_at: timestamp("created_at").notNull().defaultNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow(),
   },
   (table) => {
     return {
@@ -38,7 +37,6 @@ export const links = pgTable(
       .references(() => collections.id),
     user_id: text("user_id").notNull(),
     created_at: timestamp("created_at").notNull().defaultNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow(),
   },
   (table) => {
     return {
