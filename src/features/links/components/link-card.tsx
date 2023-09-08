@@ -1,5 +1,3 @@
-import NextLink from "next/link";
-
 import type { Link } from "../types";
 import { LinkIcon } from "@/features/ui";
 import DeleteConfirmationModal from "./delete-confirmation-modal";
@@ -13,7 +11,7 @@ interface Props {
 export function LinkCard({ link, currentPage, collectionId }: Props) {
   return (
     <div className="relative">
-      <NextLink
+      <a
         href={link.url}
         target="_blank"
         className="border-2 border-black bg-white shadow-[2px_3px] px-2 py-2.5 flex flex-col gap-1"
@@ -23,7 +21,7 @@ export function LinkCard({ link, currentPage, collectionId }: Props) {
           <LinkIcon width={14} height={14} />
           <span className="text-sm">{link.url}</span>
         </div>
-      </NextLink>
+      </a>
 
       <div className="flex items-center gap-1 absolute top-0 right-0 p-3">
         <DeleteConfirmationModal

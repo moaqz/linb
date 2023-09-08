@@ -44,13 +44,7 @@ export function LinksList({ collectionId }: { collectionId: string }) {
   }
 
   if (isLoading || isValidating || !data) {
-    return (
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {Array.from({ length: 6 }).map((_, idx) => {
-          return <LinkCardSkeleton key={idx} />;
-        })}
-      </div>
-    );
+    return <LinkCardSkeleton />;
   }
 
   if (!isLoading && data?.links && data.links.length === 0) {
