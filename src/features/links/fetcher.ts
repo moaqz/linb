@@ -5,7 +5,7 @@ export async function fetcher(url: string) {
     const error = new Error(
       "Sorry, we couldn't fetch the data at the moment. Please try again later.",
     );
-    
+
     throw error;
   }
 

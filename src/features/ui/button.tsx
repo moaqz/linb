@@ -15,4 +15,3 @@ export function Button(props: Props) {
     </button>
   );
 }
-
