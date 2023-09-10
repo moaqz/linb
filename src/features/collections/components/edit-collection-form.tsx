@@ -56,11 +56,16 @@ export function EditCollectionForm({
           name="visibility"
           id="visibility"
           defaultValue={visibility}
+          disabled
           className="w-full border-2 bg-white border-black p-2 placeholder:text-black/70 focus:outline-double"
         >
           <option value="private">Private</option>
           <option value="public">Public</option>
         </select>
+        <p className="text-gray-500 text-sm mt-2">
+          The option to change collection visibility is currently under
+          development and will be available soon.
+        </p>
       </div>
 
       <div>

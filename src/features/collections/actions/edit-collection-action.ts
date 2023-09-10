@@ -19,7 +19,8 @@ export const editCollectionAction = async (data: FormData) => {
   const collection = {
     id: Number(entries.id),
     name: entries.name,
-    visibility: entries.visibility,
+    // TODO: Update visibility with user preference when the feature is fully implemented.
+    visibility: "private",
   };
 
   try {
