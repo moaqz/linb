@@ -17,7 +17,9 @@ export function ConfirmDeletion({ collectionId }: { collectionId: number }) {
       router.push("/collections");
       toast.success("Collection deleted successfully");
     } catch (error) {
-      toast.error("Something went wrong");
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
     } finally {
       setIsOpen(false);
     }

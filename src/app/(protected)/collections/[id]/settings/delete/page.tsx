@@ -14,10 +14,11 @@ async function Page({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-4 max-w-lg">
       <h2 className="text-xl font-semibold">Delete Collection</h2>
-      <div className="p-4 bg-white text-black border-2 border-black font-semibold">
+      <div className="p-4 text-md bg-white text-black border-2 border-black font-semibold">
         Permanently delete collection{" "}
-        <span className="font-bold text-blue-700">{collection.name}</span>. This
-        action is not reversible.
+        <span className="font-semibold text-violet-700 underline">{collection.name}</span>. This
+        action is not reversible. To delete this collection, please ensure that
+        it is empty. If there are links in this collection, you won{"'"}t be able to delete it.
       </div>
 
       <ConfirmDeletion collectionId={collection.id} />

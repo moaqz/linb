@@ -8,6 +8,7 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { parse } from "valibot";
 import { DeleteCollectionSchema } from "../validations";
+import { NeonDbError } from "@neondatabase/serverless";
 
 export const deleteCollectionAction = async (data: FormData) => {
   const user = await currentUser();
@@ -15,15 +16,22 @@ export const deleteCollectionAction = async (data: FormData) => {
     throw new AuthRequiredError();
   }
 
-  const { id } = parse(DeleteCollectionSchema, {
-    id: Number(data.get("collection_id")),
-  });
-
   try {
+    const { id } = parse(DeleteCollectionSchema, {
+      id: Number(data.get("collection_id")),
+    });
+
     await db
       .delete(collections)
       .where(and(eq(collections.id, id), eq(collections.user_id, user.id)));
   } catch (error) {
+    if (error instanceof NeonDbError) {
+      // Foreign key violation
+      if (error.code === "23503") {
+        throw new Error("Cannot delete. Collection has associated links.");
+      }
+    }
+
     throw new Error("There was an error.");
   }
 
