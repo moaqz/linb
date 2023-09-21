@@ -43,3 +43,13 @@ export async function getCollectionInformation(collectionId: number) {
       and(eq(collections.id, collectionId), eq(collections.user_id, user.id)),
     );
 }
+
+export async function getCollectionById(collectionId: number) {
+  return db
+    .select({
+      id: collections.id,
+      userId: collections.user_id,
+    })
+    .from(collections)
+    .where(eq(collections.id, collectionId));
+}

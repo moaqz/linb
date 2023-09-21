@@ -5,6 +5,8 @@ import { CreateLinkModal, LinkCard, LinksEmptyState, Pagination } from "@/featur
 import { ArrowLongLeftIcon } from "@/features/ui";
 import { AuthRequiredError } from "@/lib/expection";
 import { getTotalUserLinks, getUserLinks } from "@/features/links/queries";
+import { getCollectionById } from "@/features/collections/queries";
+import { notFound } from "next/navigation";
 
 const LIMIT_PER_PAGE = 12;
 
@@ -16,6 +18,11 @@ async function Page({ params, searchParams }: {
   const user = await currentUser();
   if (user == null) {
     throw new AuthRequiredError();
+  }
+
+  const [collection] = await getCollectionById(collectionId);
+  if (!collection || collection.userId !== user.id) {
+    notFound();
   }
 
   // Number of records to skip
