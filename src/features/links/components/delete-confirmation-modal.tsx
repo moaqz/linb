@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 
 import { Button, Modal, TrashIcon } from "@/features/ui";
