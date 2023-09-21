@@ -1,32 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "react-hot-toast";
 
 import { Button, Modal, TrashIcon } from "@/features/ui";
-import { deleteLinkService } from "../services";
-import { mutate } from "swr";
+import { deleteLinkAction } from "../actions/delete-link-action";
 
 export function DeleteConfirmationModal({
   linkId,
   collectionId,
-  currentPage,
 }: {
   linkId: number;
-  currentPage: number;
-  collectionId: string;
+  collectionId: number;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOnDelete = async () => {
+  const onDelete = async (data: FormData) => {
     try {
-      await deleteLinkService(linkId);
+      await deleteLinkAction(data);
       toast.success("Link deleted succesfully.");
-      mutate(`/api/collections/${collectionId}/links?page=${currentPage}`);
     } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+      toast.error("There was an error.");
     } finally {
       setIsOpen(false);
     }
@@ -46,7 +40,11 @@ export function DeleteConfirmationModal({
           This action cannot be undone. It will permanently delete the link.
         </p>
 
-        <Button onClick={handleOnDelete}>Delete</Button>
+        <form action={onDelete}>
+          <input type="hidden" name="link_id" defaultValue={linkId.toString()} />
+          <input type="hidden" name="collection_id" defaultValue={collectionId.toString()} />
+          <Button type="submit">Delete</Button>
+        </form>
       </Modal>
     </>
   );

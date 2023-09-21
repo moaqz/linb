@@ -1,9 +1,37 @@
 import Link from "next/link";
+import { currentUser } from "@clerk/nextjs";
 
-import { LinksList, CreateLinkModal } from "@/features/links/components";
+import { CreateLinkModal, LinkCard, LinksEmptyState, Pagination } from "@/features/links/components";
 import { ArrowLongLeftIcon } from "@/features/ui";
+import { AuthRequiredError } from "@/lib/expection";
+import { getTotalUserLinks, getUserLinks } from "@/features/links/queries";
 
-function Page({ params }: { params: { id: string } }) {
+const LIMIT_PER_PAGE = 12;
+
+async function Page({ params, searchParams }: {
+  params: { id: string },
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const collectionId = Number(params.id);
+  const user = await currentUser();
+  if (user == null) {
+    throw new AuthRequiredError();
+  }
+
+  // Number of records to skip
+  const page = typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
+  const offset = (page - 1) * LIMIT_PER_PAGE;
+
+  const totalRecords = await getTotalUserLinks({ collectionId, userId: user.id });
+  const totalPageCount = Math.ceil(totalRecords.counter / LIMIT_PER_PAGE);
+
+  const links = await getUserLinks({
+    collectionId,
+    userId: user.id,
+    limit: LIMIT_PER_PAGE,
+    offset,
+  });
+
   return (
     <section className="pb-20">
       <div className="flex items-center justify-between mb-4">
@@ -22,7 +50,21 @@ function Page({ params }: { params: { id: string } }) {
         <CreateLinkModal collectionId={params.id} />
       </div>
 
-      <LinksList collectionId={params.id} />
+      {links && links.length === 0
+        ? <LinksEmptyState />
+        : <div>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {links.map((link) => (
+              <LinkCard
+                key={link.id}
+                link={link}
+                collectionId={collectionId}
+              />
+            ))}
+          </div>
+
+          <Pagination collectionId={collectionId} currentPage={page} totalPages={totalPageCount} />
+        </div>}
     </section>
   );
 }

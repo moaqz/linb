@@ -2,13 +2,10 @@ import type { Link } from "../types";
 import { LinkIcon } from "@/features/ui";
 import DeleteConfirmationModal from "./delete-confirmation-modal";
 
-interface Props {
+export function LinkCard({ link, collectionId }: {
   link: Link;
-  currentPage: number;
-  collectionId: string;
-}
-
-export function LinkCard({ link, currentPage, collectionId }: Props) {
+  collectionId: number;
+}) {
   return (
     <div className="relative">
       <a
@@ -26,7 +23,6 @@ export function LinkCard({ link, currentPage, collectionId }: Props) {
       <div className="flex items-center gap-1 absolute top-0 right-0 p-3">
         <DeleteConfirmationModal
           linkId={link.id}
-          currentPage={currentPage}
           collectionId={collectionId}
         />
       </div>

@@ -1,77 +1,93 @@
 "use client";
 
 import { toast } from "react-hot-toast";
-import { useSWRConfig } from "swr";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button, Modal } from "@/features/ui";
-import { createLinkService } from "../services";
+import { CreateLinkType } from "../validations";
+import { createLinkAction } from "../actions/create-link-action";
+
+const pattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&/=]*)$/;
 
 export function CreateLinkModal({ collectionId }: { collectionId: string }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const { mutate } = useSWRConfig();
-  const formRef = useRef<HTMLFormElement>(null);
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    formState: { errors, isSubmitting }
+  } = useForm<Omit<CreateLinkType, "collectionId">>();
 
-  const onSubmit = async (formData: FormData) => {
-    try {
-      await createLinkService({
-        collectionId,
-        formData,
+  const onCreate = handleSubmit(async (data: Omit<CreateLinkType, "collectionId">) => {
+    const body = new FormData();
+    Object.entries(data).forEach(([key, value]) => body.append(key, value));
+    body.append("collectionId", collectionId);
+
+    const result = await createLinkAction(body);
+    if (result?.error) {
+      setError("root", {
+        message: result.error
       });
-
-      setIsOpen(false);
-      formRef.current?.reset();
-      mutate(`/api/collections/${collectionId}/links?page=1`);
-      toast.success("Link added succesfully.");
-    } catch (error) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message);
-      }
+      return;
     }
-  };
+
+    toast.success("Collection created succesfully.");
+    setIsOpen(false);
+    reset();
+  });
 
   return (
     <div>
       <Button onClick={() => setIsOpen(true)}>Add Link</Button>
 
       <Modal open={isOpen} onClose={() => setIsOpen(false)} title="Add Link">
-        <form className="flex flex-col" action={onSubmit} ref={formRef}>
-          <label htmlFor="link_name" className="text-sm font-semibold mb-1">
+        <form className="flex flex-col" onSubmit={onCreate}>
+          <label htmlFor="name" className="text-sm font-semibold mb-1">
             Name
           </label>
           <input
             type="text"
-            id="link_name"
-            name="link_name"
             placeholder="Name (max 50 characters)"
-            minLength={1}
-            maxLength={50}
-            required
-            aria-invalid={!!errorMessage}
+            {...register("name", {
+              required: "Name is required",
+              maxLength: { value: 50, message: "Link name should be 50 characters or fewer." }
+            })}
+            aria-invalid={errors.name ? "true" : "false"}
             className="border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
           />
 
-          <label htmlFor="link_url" className="text-sm font-semibold mt-4 mb-1">
+          {errors.name && (
+            <span role="alert" className="mt-2 text-red-600 font-semibold">{errors.name.message}</span>
+          )}
+
+          <label htmlFor="url" className="text-sm font-semibold mt-4 mb-1">
             Link
           </label>
           <input
             type="url"
-            id="link_url"
-            name="link_url"
             placeholder="Paste link here"
-            pattern="https://.*"
-            required
-            aria-invalid={!!errorMessage}
+            {...register("url", {
+              required: "URL is required",
+              pattern: { message: "Invalid URL", value: pattern }
+            })}
+            aria-invalid={errors.url ? "true" : "false"}
             className="border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
           />
 
-          {errorMessage && (
-            <p className="mt-2 text-red-600 font-semibold">{errorMessage}</p>
+          {errors.url && (
+            <span role="alert" className="mt-2 text-red-600 font-semibold">{errors.url.message}</span>
+          )}
+
+          {errors.root && (
+            <span role="alert" className="mt-2 text-red-600 font-semibold">{errors.root.message}</span>
           )}
 
           <div className="flex items-center gap-2 mt-4">
-            <Button type="submit">Create</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Creating..." : "Create"}
+            </Button>
           </div>
         </form>
       </Modal>

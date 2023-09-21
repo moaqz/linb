@@ -1,46 +1,37 @@
-import { Button, ChevronLeftIcon, ChevronRightIcon } from "@/features/ui";
+import { Button, ChevronLeftIcon, ChevronRightIcon, Link } from "@/features/ui";
 
-interface Props {
-  currentPage: number;
-  totalPages: number;
-  updatePage: (n: number) => void;
-}
-
-export function Pagination({ currentPage, totalPages, updatePage }: Props) {
-  const handlePrevPageClick = () => {
-    if (currentPage <= 1) {
-      return;
-    }
-
-    updatePage(currentPage - 1);
-  };
-
-  const handleNextPageClick = () => {
-    if (currentPage >= totalPages) {
-      return;
-    }
-
-    updatePage(currentPage + 1);
-  };
+export function Pagination({ currentPage, totalPages, collectionId }: {
+  currentPage: number,
+  totalPages: number,
+  collectionId: number
+}) {
+  const BASE_URL = `/collections/${collectionId}?page=`;
 
   return (
     <div className="mt-4 flex items-center justify-between">
-      <Button onClick={handlePrevPageClick} disabled={currentPage <= 1}>
-        <ChevronLeftIcon width={20} height={20} />
-        <span>Prev</span>
-      </Button>
+      {currentPage <= 1
+        ? <Button disabled>
+          <ChevronLeftIcon width={20} height={20} />
+          <span>Prev</span>
+        </Button>
+        : <Link href={`${BASE_URL}${currentPage - 1}`}>
+          <ChevronLeftIcon width={20} height={20} />
+          <span>Prev</span>
+        </Link>}
 
       <span className="font-semibold">
         Page {currentPage} of {totalPages}
       </span>
 
-      <Button
-        onClick={handleNextPageClick}
-        disabled={currentPage >= totalPages}
-      >
-        <span>Next</span>
-        <ChevronRightIcon width={20} height={20} />
-      </Button>
+      {currentPage >= totalPages
+        ? <Button>
+          <span>Next</span>
+          <ChevronRightIcon width={20} height={20} />
+        </Button>
+        : <Link href={`${BASE_URL}${currentPage + 1}`}>
+          <span>Next</span>
+          <ChevronRightIcon width={20} height={20} />
+        </Link>}
     </div>
   );
 }
