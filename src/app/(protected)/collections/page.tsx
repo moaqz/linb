@@ -1,7 +1,6 @@
 import CollectionTable from "@collections/components/collection-table";
 import { getUserCollections } from "@/features/collections/queries";
 import CreateCollection from "@collections/components/create-collection";
-import { CollectionTableSkeleton } from "@/features/collections/components";
 
 async function Collections() {
   const collections = await getUserCollections();
