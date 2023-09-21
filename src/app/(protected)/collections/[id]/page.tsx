@@ -54,6 +54,8 @@ async function Page({ params, searchParams }: {
           <span>Collections</span>
         </Link>
 
+        {/* <div className=" bg-gray-300 w-20 h-10 mb-4"></div> */}
+
         <CreateLinkModal collectionId={params.id} />
       </div>
 

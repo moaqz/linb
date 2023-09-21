@@ -5,3 +5,4 @@ export * from "./create-collection";
 export * from "./visibility-badge";
 export * from "./edit-collection-form";
 export * from "./confirm-deletion";
+export * from "./collection-table-skeleton";
