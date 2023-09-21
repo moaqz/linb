@@ -21,7 +21,6 @@
     "react-dom": "18.2.0",
     "react-hook-form": "7.46.2",
     "react-hot-toast": "2.4.1",
-    "swr": "2.2.2",
     "valibot": "0.17.0"
   },
   "devDependencies": {
