@@ -17,7 +17,7 @@ export const createCollectionAction = async (data: FormData) => {
 
   try {
     const { name } = parse(CreateCollectionSchema, {
-      name: data.get("collection_name"),
+      name: data.get("name"),
     });
 
     const [responseData] = await db

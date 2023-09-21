@@ -31,3 +31,5 @@ export type EditCollectionType = Input<typeof EditCollectionSchema>;
 export const DeleteCollectionSchema = object({
   id: number(),
 });
+
+export type DeleteCollectionType = Input<typeof DeleteCollectionSchema>

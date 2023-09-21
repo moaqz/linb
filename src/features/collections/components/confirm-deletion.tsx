@@ -1,17 +1,25 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 import { Button, Modal } from "@/features/ui";
 import { deleteCollectionAction } from "../actions/delete-collection-action";
 
 export function ConfirmDeletion({ collectionId }: { collectionId: number }) {
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [randomWord, setRandomWord] = useState("");
+  const [input, setInput] = useState("");
 
-  const deleteCollectionHandler = async (data: FormData) => {
+  const deleteCollection = async (data: FormData) => {
+    if (randomWord !== input) {
+      toast.error("The words do not match");
+      setIsOpen(false);
+      return;
+    }
+
     try {
       await deleteCollectionAction(data);
       router.push("/collections");
@@ -25,6 +33,12 @@ export function ConfirmDeletion({ collectionId }: { collectionId: number }) {
     }
   };
 
+  useEffect(() => {
+    setRandomWord(
+      crypto.randomUUID().split("-")[0]
+    );
+  }, []);
+
   return (
     <div>
       <Button onClick={() => setIsOpen(true)}>Delete</Button>
@@ -34,7 +48,7 @@ export function ConfirmDeletion({ collectionId }: { collectionId: number }) {
         open={isOpen}
         onClose={() => setIsOpen(false)}
       >
-        <form action={deleteCollectionHandler}>
+        <form action={deleteCollection} className="space-y-3">
           <input
             type="text"
             name="collection_id"
@@ -42,7 +56,19 @@ export function ConfirmDeletion({ collectionId }: { collectionId: number }) {
             hidden
           />
 
-          <Button type="submit">Delete</Button>
+          <p className="text-gray-600">
+            Deleting a collection is irreversible. If you want to delete this collection, please type{" "}
+            <code className="font-bold text-black">{randomWord}</code> in the box below and click the button.
+          </p>
+
+          <input
+            type="text"
+            autoComplete="off"
+            onChange={(e) => setInput(e.target.value)}
+            className="w-full border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
+          />
+
+          <Button type="submit">Delete collection</Button>
         </form>
       </Modal>
     </div>
