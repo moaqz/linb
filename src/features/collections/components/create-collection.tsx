@@ -45,7 +45,7 @@ function CreateCollection({ totalRecords }: { totalRecords: number }) {
             minLength={1}
             maxLength={50}
             required
-            aria-invalid={errorMessage ? true : false}
+            aria-invalid={!!errorMessage}
             className="w-full border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
           />
 

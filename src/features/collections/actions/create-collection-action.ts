@@ -35,7 +35,7 @@ export const createCollectionAction = async (data: FormData) => {
 
     await db.insert(collections).values({
       user_id: user.id,
-      name: name,
+      name,
     });
   } catch (error) {
     if (error instanceof ValiError) {

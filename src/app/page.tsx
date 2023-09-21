@@ -10,11 +10,13 @@ async function Page() {
         <div className="max-w-screen-lg mx-auto flex items-center justify-between p-4">
           <Logo />
 
-          {user ? (
-            <Link href="/collections">Go to Collections</Link>
-          ) : (
-            <Link href="/sign-up">Sign in</Link>
-          )}
+          {user
+            ? (
+              <Link href="/collections">Go to Collections</Link>
+            )
+            : (
+              <Link href="/sign-up">Sign in</Link>
+            )}
         </div>
       </header>
 
@@ -36,11 +38,11 @@ async function Page() {
       <footer className="max-w-screen-lg mx-auto w-full px-2 sm:px-4 py-6">
         <p className="text-sm [&>a]:font-medium [&>a]:underline [&>a]:underline-offset-4">
           Crafted by{" "}
-          <a href="https://github.com/moaqz" target="_blank">
+          <a href="https://github.com/moaqz" target="_blank" rel="noreferrer">
             moaqz
           </a>
           . The source code is on{" "}
-          <a target="_blank" href="https://github.com/moaqz/linb">
+          <a target="_blank" href="https://github.com/moaqz/linb" rel="noreferrer">
             Github
           </a>
           .

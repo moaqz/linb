@@ -54,16 +54,14 @@ export function LinksList({ collectionId }: { collectionId: string }) {
   return (
     <>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {data.links.map((link) => {
-          return (
-            <LinkCard
-              key={link.id}
-              link={link}
-              currentPage={page}
-              collectionId={collectionId}
-            />
-          );
-        })}
+        {data.links.map((link) => (
+          <LinkCard
+            key={link.id}
+            link={link}
+            currentPage={page}
+            collectionId={collectionId}
+          />
+        ))}
       </div>
       <Pagination
         currentPage={page}

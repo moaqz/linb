@@ -14,13 +14,13 @@ export async function POST(request: Request) {
   const data = await request.json();
 
   try {
-    const { name, url, collection_id } = parse(CreateLinkSchema, data);
+    const { name, url, collectionId } = parse(CreateLinkSchema, data);
 
     await db.insert(links).values({
-      name: name,
-      url: url,
+      name,
+      url,
       user_id: user.id,
-      collection_id: collection_id,
+      collection_id: collectionId,
     });
   } catch (error) {
     if (error instanceof ValiError) {

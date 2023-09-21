@@ -16,8 +16,8 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
   const onSubmit = async (formData: FormData) => {
     try {
       await createLinkService({
-        collectionId: collectionId,
-        formData: formData,
+        collectionId,
+        formData,
       });
 
       setIsOpen(false);
@@ -48,7 +48,7 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
             minLength={1}
             maxLength={50}
             required
-            aria-invalid={errorMessage ? true : false}
+            aria-invalid={!!errorMessage}
             className="border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
           />
 
@@ -62,7 +62,7 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
             placeholder="Paste link here"
             pattern="https://.*"
             required
-            aria-invalid={errorMessage ? true : false}
+            aria-invalid={!!errorMessage}
             className="border-2 border-black p-2 placeholder:text-black/70 focus:outline-double aria-[invalid=true]:border-red-600"
           />
 

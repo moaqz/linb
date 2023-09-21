@@ -19,11 +19,9 @@ export const collections = pgTable(
     user_id: text("user_id").notNull(),
     created_at: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => {
-    return {
-      userIdx: index("user_id_idx").on(table.user_id),
-    };
-  },
+  (table) => ({
+    userIdx: index("user_id_idx").on(table.user_id),
+  }),
 );
 
 export const links = pgTable(
@@ -38,12 +36,10 @@ export const links = pgTable(
     user_id: text("user_id").notNull(),
     created_at: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => {
-    return {
-      userCollectionIdx: index("user_collection_idx").on(
-        table.user_id,
-        table.collection_id,
-      ),
-    };
-  },
+  (table) => ({
+    userCollectionIdx: index("user_collection_idx").on(
+      table.user_id,
+      table.collection_id,
+    ),
+  }),
 );

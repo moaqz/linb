@@ -14,7 +14,7 @@ export function LinkCard({ link, currentPage, collectionId }: Props) {
       <a
         href={link.url}
         target="_blank"
-        className="border-2 border-black bg-white shadow-[2px_3px] px-2 py-2.5 flex flex-col gap-1"
+        className="border-2 border-black bg-white shadow-[2px_3px] px-2 py-2.5 flex flex-col gap-1" rel="noreferrer"
       >
         <span className="font-semibold">{link.name}</span>
         <div className="inline-flex items-center gap-1 text-gray-600">

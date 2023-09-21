@@ -27,8 +27,6 @@ export async function createLinkService({
 
     throw new Error("Something went wrong!");
   }
-
-  return;
 }
 
 export async function deleteLinkService(id: number) {
@@ -39,6 +37,4 @@ export async function deleteLinkService(id: number) {
   if (!res.ok) {
     throw new Error("Unable to delete the link.");
   }
-
-  return;
 }

@@ -15,7 +15,7 @@ export const CreateLinkSchema = object({
     maxLength(50, "Link name should be 50 characters or fewer."),
   ]),
   url: string([url()]),
-  collection_id: number([minValue(1, "Invalid collection ID")]),
+  collectionId: number([minValue(1, "Invalid collection ID")]),
 });
 
 export type CreateLinkType = Input<typeof CreateLinkSchema>;
