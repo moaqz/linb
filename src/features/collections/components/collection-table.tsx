@@ -3,7 +3,7 @@ import { Collection } from "../types";
 
 function CollectionTable({ collections }: { collections: Collection[] }) {
   return (
-    <div className="mt-4 overflow-x-auto shadow-md border-2 border-black bg-white">
+    <div className="mt-4 overflow-x-auto border-2 border-black bg-white shadow-neo rounded">
       <table className="w-full text-sm text-left">
         <thead className="text-xs uppercase [&>tr>th]:px-6 [&>tr>th]:py-3">
           <tr className="border-b-2 border-black">

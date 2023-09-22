@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/features/ui";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -24,16 +25,13 @@ export default function Error({
       </h1>
 
       <div className="flex items-center justify-center gap-2">
-        <button
-          onClick={() => reset()}
-          className="px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
-        >
+        <Button onClick={() => reset()}>
           Try again
-        </button>
+        </Button>
 
         <Link
           href="/"
-          className="px-2 py-1.5 bg-red-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
+          className="inline-flex items-center gap-1 border-2 bg-white px-3 py-1.5 text-base border-black rounded shadow-neo text-black font-medium transition-shadow enabled:hover:shadow-none disabled:shadow-none"
         >
           Go back home
         </Link>

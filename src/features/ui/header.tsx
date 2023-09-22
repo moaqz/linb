@@ -3,10 +3,10 @@ import { Logo } from ".";
 
 export function Header() {
   return (
-    <header className="mb-6 border-b-2 border-b-black bg-white">
-      <div className="max-w-screen-lg mx-auto flex items-center justify-between p-4">
+    <header className="max-w-screen-lg mx-auto w-full mt-4">
+      <div className="flex items-center justify-between p-4 bg-white border-2 border-black shadow-neo rounded-md">
         <Logo />
-        <UserButton showName />
+        <UserButton />
       </div>
     </header>
   );

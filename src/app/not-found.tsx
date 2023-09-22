@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/features/ui";
 
 export default function NotFound() {
   return (
@@ -10,10 +10,7 @@ export default function NotFound() {
       <h1 className="text-2xl font-medium">Oops... looks like you got lost</h1>
 
       <div className="flex items-center justify-center gap-2">
-        <Link
-          href="/"
-          className="px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px] transition-shadow hover:shadow-none"
-        >
+        <Link href="/">
           Back to home page
         </Link>
       </div>

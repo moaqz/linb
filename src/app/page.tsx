@@ -5,22 +5,22 @@ async function Page() {
   const user = await currentUser();
 
   return (
-    <div className="h-screen grid grid-rows-[auto_1fr_auto]">
-      <header className="border-b-2 border-b-black bg-white">
-        <div className="max-w-screen-lg mx-auto flex items-center justify-between p-4">
+    <div className="h-screen grid grid-rows-[auto_1fr_auto] px-4">
+      <header className="max-w-screen-lg mx-auto w-full mt-4">
+        <div className="flex items-center justify-between p-4 bg-white border-2 border-black shadow-neo rounded-md">
           <Logo />
 
           {user
             ? (
-              <Link href="/collections">Go to Collections</Link>
+              <Link href="/collections" size="small">Go to Collections</Link>
             )
             : (
-              <Link href="/sign-up">Sign in</Link>
+              <Link href="/sign-up" size="small">Sign in</Link>
             )}
         </div>
       </header>
 
-      <main className="w-full max-w-screen-lg mx-auto px-4">
+      <main className="w-full max-w-screen-lg mx-auto">
         <div className="mt-40 text-left max-w-sm sm:max-w-xl">
           <h1 className="text-4xl sm:text-5xl font-semibold">
             Find your Favorite websites in seconds
@@ -35,7 +35,7 @@ async function Page() {
         </div>
       </main>
 
-      <footer className="max-w-screen-lg mx-auto w-full px-2 sm:px-4 py-6">
+      <footer className="max-w-screen-lg mx-auto w-full py-6 border-t-2 border-t-black">
         <p className="text-sm [&>a]:font-medium [&>a]:underline [&>a]:underline-offset-4">
           Crafted by{" "}
           <a href="https://github.com/moaqz" target="_blank" rel="noreferrer">

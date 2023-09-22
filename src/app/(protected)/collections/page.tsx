@@ -7,8 +7,8 @@ async function Collections() {
 
   return (
     <section>
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-semibold">Collections</h2>
+      <div className="flex flex-col gap-2 justify-between sm:flex-row">
+        <h2 className="text-2xl font-medium">Collections</h2>
         <CreateCollection totalRecords={collections?.[0]?.collection_count} />
       </div>
 

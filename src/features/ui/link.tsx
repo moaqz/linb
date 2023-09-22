@@ -5,13 +5,16 @@ interface Props {
   children: React.ReactNode;
   href: string;
   className?: string;
+  size?: "normal" | "small"
 }
 
-export function Link(props: Props) {
+export function Link({ size = "normal", ...rest }: Props) {
   return (
     <NextLink
-      className="inline-flex gap-1 px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px_#000] transition-shadow hover:shadow-none"
-      {...props}
+      className={`inline-flex items-center gap-1 border-2 bg-yellow-300 border-black rounded shadow-neo text-black font-medium transition-shadow hover:shadow-none ${
+        size === "small" ? "px-3 py-1.5 text-base" : "text-lg px-6 py-2"
+      }`}
+      {...rest}
     />
   );
 }

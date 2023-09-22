@@ -7,7 +7,9 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button(props: Props) {
   return (
     <button
-      className="inline-flex gap-1 px-2 py-1.5 bg-yellow-400 border-2 border-black font-semibold shadow-[2px_3px_#000] transition-shadow hover:shadow-none"
+      className={
+        "inline-flex items-center gap-1 border-2 bg-yellow-300 px-3 py-1.5 text-base border-black rounded shadow-neo text-black font-medium transition-shadow enabled:hover:shadow-none disabled:shadow-none"
+      }
       {...props}
     >
       {props.icon && props.icon}
