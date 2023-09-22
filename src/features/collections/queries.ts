@@ -48,6 +48,7 @@ export async function getCollectionById(collectionId: number) {
   return db
     .select({
       id: collections.id,
+      name: collections.name,
       userId: collections.user_id,
     })
     .from(collections)
