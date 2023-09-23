@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { currentUser } from "@clerk/nextjs";
 
-import { CreateLinkModal, LinkCard, LinksEmptyState, Pagination } from "@/features/links/components";
+import {
+  CreateLinkModal,
+  LinkCard,
+  LinksEmptyState,
+  Pagination,
+} from "@/features/links/components";
 import { ArrowLongLeftIcon } from "@/features/ui";
 import { AuthRequiredError } from "@/lib/expection";
 import { getTotalUserLinks, getUserLinks } from "@/features/links/queries";
@@ -10,9 +15,12 @@ import { notFound } from "next/navigation";
 
 const LIMIT_PER_PAGE = 12;
 
-async function Page({ params, searchParams }: {
-  params: { id: string },
-  searchParams: { [key: string]: string | string[] | undefined }
+async function Page({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const collectionId = Number(params.id);
   const user = await currentUser();
@@ -26,10 +34,14 @@ async function Page({ params, searchParams }: {
   }
 
   // Number of records to skip
-  const page = typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
+  const page =
+    typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
   const offset = (page - 1) * LIMIT_PER_PAGE;
 
-  const totalRecords = await getTotalUserLinks({ collectionId, userId: user.id });
+  const totalRecords = await getTotalUserLinks({
+    collectionId,
+    userId: user.id,
+  });
   const totalPageCount = Math.ceil(totalRecords.counter / LIMIT_PER_PAGE);
 
   const links = await getUserLinks({
@@ -57,21 +69,23 @@ async function Page({ params, searchParams }: {
         <CreateLinkModal collectionId={params.id} />
       </div>
 
-      {links && links.length === 0
-        ? <LinksEmptyState />
-        : <div>
+      {links && links.length === 0 ? (
+        <LinksEmptyState />
+      ) : (
+        <div>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             {links.map((link) => (
-              <LinkCard
-                key={link.id}
-                link={link}
-                collectionId={collectionId}
-              />
+              <LinkCard key={link.id} link={link} collectionId={collectionId} />
             ))}
           </div>
 
-          <Pagination collectionId={collectionId} currentPage={page} totalPages={totalPageCount} />
-        </div>}
+          <Pagination
+            collectionId={collectionId}
+            currentPage={page}
+            totalPages={totalPageCount}
+          />
+        </div>
+      )}
     </section>
   );
 }

@@ -20,7 +20,7 @@ test("Should render a link to the collection with the correct href", () => {
   expect(collectionLink).toBeInTheDocument();
   expect(collectionLink).toHaveAttribute(
     "href",
-    `/collections/${collectionData.id}`,
+    `/collections/${collectionData.id}`
   );
 });
 
@@ -34,11 +34,11 @@ test("Should render a settings link with the correct href and aria-label", () =>
   expect(settingsLink).toBeInTheDocument();
   expect(settingsLink).toHaveAttribute(
     "href",
-    `/collections/${collectionData.id}/settings/general`,
+    `/collections/${collectionData.id}/settings/general`
   );
   expect(settingsLink).toHaveAttribute(
     "aria-label",
-    `Settings for ${collectionData.name}`,
+    `Settings for ${collectionData.name}`
   );
 });
 
@@ -47,7 +47,7 @@ test("Should render visibility and date correctly", () => {
 
   const visibilityBadge = screen.getByText(/public/i);
   const formattedDate = screen.getByText(
-    collectionData.created_at!.toLocaleDateString(),
+    collectionData.created_at!.toLocaleDateString()
   );
 
   expect(visibilityBadge).toBeInTheDocument();

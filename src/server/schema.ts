@@ -21,7 +21,7 @@ export const collections = pgTable(
   },
   (table) => ({
     userIdx: index("user_id_idx").on(table.user_id),
-  }),
+  })
 );
 
 export const links = pgTable(
@@ -39,7 +39,7 @@ export const links = pgTable(
   (table) => ({
     userCollectionIdx: index("user_collection_idx").on(
       table.user_id,
-      table.collection_id,
+      table.collection_id
     ),
-  }),
+  })
 );

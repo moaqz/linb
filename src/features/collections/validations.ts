@@ -32,4 +32,4 @@ export const DeleteCollectionSchema = object({
   id: number(),
 });
 
-export type DeleteCollectionType = Input<typeof DeleteCollectionSchema>
+export type DeleteCollectionType = Input<typeof DeleteCollectionSchema>;

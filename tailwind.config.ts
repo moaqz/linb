@@ -13,8 +13,8 @@ const config: Config = {
         primary: "#f2f5f2",
       },
       boxShadow: {
-        neo: "4px 4px 0 #000"
-      }
+        neo: "4px 4px 0 #000",
+      },
     },
   },
   plugins: [],

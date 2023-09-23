@@ -7,7 +7,7 @@ const LIMIT_PER_PAGE = 12;
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: { id: string } }
 ) {
   const user = await currentUser();
   if (user == null) {
@@ -20,7 +20,7 @@ export async function GET(
       JSON.stringify({
         message: "invalid collection id",
       }),
-      { status: 400 },
+      { status: 400 }
     );
   }
 
@@ -37,7 +37,7 @@ export async function GET(
       .select({ counter: sql<number>`COUNT(*)` })
       .from(links)
       .where(
-        and(eq(links.user_id, user.id), eq(links.collection_id, collectionID)),
+        and(eq(links.user_id, user.id), eq(links.collection_id, collectionID))
       );
 
     if (totalRecords.counter === 0) {
@@ -46,7 +46,7 @@ export async function GET(
           links: [],
           totalPages: 0,
         }),
-        { status: 200 },
+        { status: 200 }
       );
     }
 
@@ -59,7 +59,7 @@ export async function GET(
       })
       .from(links)
       .where(
-        and(eq(links.user_id, user.id), eq(links.collection_id, collectionID)),
+        and(eq(links.user_id, user.id), eq(links.collection_id, collectionID))
       )
       .orderBy(desc(links.created_at))
       .limit(LIMIT_PER_PAGE)
@@ -72,7 +72,7 @@ export async function GET(
         links: data,
         totalPages: totalPageCount,
       }),
-      { status: 200 },
+      { status: 200 }
     );
   } catch (error) {
     console.log("Error", error);

@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
   href: string;
   className?: string;
-  size?: "normal" | "small"
+  size?: "normal" | "small";
 }
 
 export function Link({ size = "normal", ...rest }: Props) {

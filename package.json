@@ -45,7 +45,11 @@
   "eslintConfig": {
     "extends": "@moaqz/eslint-config-react",
     "rules": {
-      "no-undef": "off"
+      "no-undef": "off",
+      "multiline-ternary": [
+        "error",
+        "never"
+      ]
     }
   }
 }

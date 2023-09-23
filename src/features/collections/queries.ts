@@ -40,7 +40,7 @@ export async function getCollectionInformation(collectionId: number) {
     })
     .from(collections)
     .where(
-      and(eq(collections.id, collectionId), eq(collections.user_id, user.id)),
+      and(eq(collections.id, collectionId), eq(collections.user_id, user.id))
     );
 }
 

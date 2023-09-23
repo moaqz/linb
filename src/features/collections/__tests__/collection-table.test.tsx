@@ -34,7 +34,7 @@ test("Should render each collection as a row in the table", () => {
     expect(screen.getByText(collection.name)).toBeInTheDocument();
 
     expect(
-      screen.getByText(collection.created_at!.toLocaleDateString()),
+      screen.getByText(collection.created_at!.toLocaleDateString())
     ).toBeInTheDocument();
 
     expect(screen.getByText(collection.visibility)).toBeInTheDocument();

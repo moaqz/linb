@@ -25,9 +25,7 @@ export default function Error({
       </h1>
 
       <div className="flex items-center justify-center gap-2">
-        <Button onClick={() => reset()}>
-          Try again
-        </Button>
+        <Button onClick={() => reset()}>Try again</Button>
 
         <Link
           href="/"

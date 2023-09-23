@@ -23,7 +23,7 @@ export function useOnlineStatus() {
   const isOnline = useSyncExternalStore(
     subscribe,
     getSnapshot,
-    getServerSnapshot,
+    getServerSnapshot
   );
 
   return isOnline;

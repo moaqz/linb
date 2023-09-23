@@ -15,22 +15,20 @@ function CollectionTable({ collections }: { collections: Collection[] }) {
         </thead>
 
         <tbody className="[&_tr:last-child]:border-0">
-          {collections && collections.length
-            ? (
-              collections.map((collection) => (
-                <CollectionRow key={crypto.randomUUID()} {...collection} />
-              ))
-            )
-            : (
-              <tr>
-                <td
-                  className="p-4 font-medium text-gray-900 text-base"
-                  colSpan={4}
-                >
+          {collections && collections.length ? (
+            collections.map((collection) => (
+              <CollectionRow key={crypto.randomUUID()} {...collection} />
+            ))
+          ) : (
+            <tr>
+              <td
+                className="p-4 font-medium text-gray-900 text-base"
+                colSpan={4}
+              >
                 No collections found
-                </td>
-              </tr>
-            )}
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

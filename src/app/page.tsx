@@ -10,13 +10,15 @@ async function Page() {
         <div className="flex items-center justify-between p-4 bg-white border-2 border-black shadow-neo rounded-md">
           <Logo />
 
-          {user
-            ? (
-              <Link href="/collections" size="small">Go to Collections</Link>
-            )
-            : (
-              <Link href="/sign-up" size="small">Sign in</Link>
-            )}
+          {user ? (
+            <Link href="/collections" size="small">
+              Go to Collections
+            </Link>
+          ) : (
+            <Link href="/sign-up" size="small">
+              Sign in
+            </Link>
+          )}
         </div>
       </header>
 
@@ -42,7 +44,11 @@ async function Page() {
             moaqz
           </a>
           . The source code is on{" "}
-          <a target="_blank" href="https://github.com/moaqz/linb" rel="noreferrer">
+          <a
+            target="_blank"
+            href="https://github.com/moaqz/linb"
+            rel="noreferrer"
+          >
             Github
           </a>
           .

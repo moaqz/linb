@@ -18,13 +18,13 @@ export const deleteLinkAction = async (data: FormData) => {
 
   if (isNaN(linkId) || linkId <= 0) {
     return {
-      error: "invalid link id"
+      error: "invalid link id",
     };
   }
 
   if (!collectionId || typeof collectionId !== "string") {
     return {
-      error: "invalid collection id"
+      error: "invalid collection id",
     };
   }
 

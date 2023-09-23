@@ -12,9 +12,7 @@ export function SettingsSidebar({ collectionId }: { collectionId: string }) {
       <Link
         href={`${basePath}/general`}
         className={
-          path === "general"
-            ? "capitalize border-l-2 border-black px-4 py-2 font-semibold"
-            : "capitalize border-l-2 border-black/30 text-black/60 px-4 py-2 font-semibold"
+          path === "general" ? "capitalize border-l-2 border-black px-4 py-2 font-semibold" : "capitalize border-l-2 border-black/30 text-black/60 px-4 py-2 font-semibold"
         }
       >
         General
@@ -23,9 +21,7 @@ export function SettingsSidebar({ collectionId }: { collectionId: string }) {
       <Link
         href={`${basePath}/delete`}
         className={
-          path === "delete"
-            ? "capitalize border-l-2 border-black px-4 py-2 font-semibold"
-            : "capitalize border-l-2 border-black/30 text-black/60 px-4 py-2 font-semibold"
+          path === "delete" ? "capitalize border-l-2 border-black px-4 py-2 font-semibold" : "capitalize border-l-2 border-black/30 text-black/60 px-4 py-2 font-semibold"
         }
       >
         Delete

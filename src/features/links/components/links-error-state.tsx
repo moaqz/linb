@@ -8,29 +8,27 @@ export function LinksErrorState() {
 
   return (
     <div className="text-center flex flex-col items-center max-w-sm mx-auto">
-      {!isOnline
-        ? (
-          <>
-            <p className="text-xl font-bold mb-1 mt-4">Lost Connection</p>
-            <p className="text-gray-500">
+      {!isOnline ? (
+        <>
+          <p className="text-xl font-bold mb-1 mt-4">Lost Connection</p>
+          <p className="text-gray-500">
             Whoops... no internet connection found. Check your connection
-            </p>
-          </>
-        )
-        : (
-          <>
-            <Image
-              src="/message-illustration.svg"
-              alt="Message illustration"
-              width={250}
-              height={250}
-            />
-            <p className="text-xl font-bold mb-1 mt-4">Something went wrong</p>
-            <p className="text-lg font-semibold mb-1">
+          </p>
+        </>
+      ) : (
+        <>
+          <Image
+            src="/message-illustration.svg"
+            alt="Message illustration"
+            width={250}
+            height={250}
+          />
+          <p className="text-xl font-bold mb-1 mt-4">Something went wrong</p>
+          <p className="text-lg font-semibold mb-1">
             We{"'"}re having some difficulties. Please try again
-            </p>
-          </>
-        )}
+          </p>
+        </>
+      )}
     </div>
   );
 }

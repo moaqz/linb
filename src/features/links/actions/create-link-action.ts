@@ -33,7 +33,7 @@ export const createLinkAction = async (data: FormData) => {
   } catch (error) {
     console.log(error);
     return {
-      error: "Something went wrong!"
+      error: "Something went wrong!",
     };
   }
 };
