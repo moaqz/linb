@@ -41,9 +41,26 @@ export function DeleteConfirmationModal({
         </p>
 
         <form action={onDelete}>
-          <input type="hidden" name="link_id" defaultValue={linkId.toString()} />
-          <input type="hidden" name="collection_id" defaultValue={collectionId.toString()} />
-          <Button type="submit">Delete</Button>
+          <input
+            type="hidden"
+            name="link_id"
+            defaultValue={linkId.toString()}
+          />
+          <input
+            type="hidden"
+            name="collection_id"
+            defaultValue={collectionId.toString()}
+          />
+          <div className="space-x-3">
+            <Button
+              type="button"
+              color="secondary"
+              onClick={() => setIsOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button type="submit">Delete</Button>
+          </div>
         </form>
       </Modal>
     </>
