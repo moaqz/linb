@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -8,21 +7,18 @@ import { Button, Modal } from "@/features/ui";
 import { deleteCollectionAction } from "../actions/delete-collection-action";
 
 export function ConfirmDeletion({ collectionId }: { collectionId: number }) {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const deleteCollection = async (data: FormData) => {
-    try {
-      await deleteCollectionAction(data);
-      toast.success("Collection deleted successfully");
+    const result = await deleteCollectionAction(data);
+
+    if (result?.error) {
+      toast.error(result.error);
       setIsOpen(false);
-      router.push("/collections");
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-      setIsOpen(false);
+      return;
     }
+
+    toast.success("Collection deleted successfully");
   };
 
   return (

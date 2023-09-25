@@ -9,6 +9,7 @@ import { revalidatePath } from "next/cache";
 import { parse } from "valibot";
 import { DeleteCollectionSchema } from "../validations";
 import { NeonDbError } from "@neondatabase/serverless";
+import { redirect } from "next/navigation";
 
 export const deleteCollectionAction = async (data: FormData) => {
   const user = await currentUser();
@@ -28,12 +29,17 @@ export const deleteCollectionAction = async (data: FormData) => {
     if (error instanceof NeonDbError) {
       // Foreign key violation
       if (error.code === "23503") {
-        throw new Error("Cannot delete. Collection has associated links.");
+        return {
+          error: "Cannot delete. Collection has associated links.",
+        };
       }
     }
 
-    throw new Error("There was an error.");
+    return {
+      error: "There was an error.",
+    };
   }
 
   revalidatePath("/collections");
+  redirect("/collections");
 };
