@@ -31,7 +31,6 @@ export const createLinkAction = async (data: FormData) => {
     revalidatePath(`/collections/${collectionId}`);
     return { message: "Success" };
   } catch (error) {
-    console.log(error);
     return {
       error: "Something went wrong!",
     };

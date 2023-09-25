@@ -75,8 +75,6 @@ export async function GET(
       { status: 200 }
     );
   } catch (error) {
-    console.log("Error", error);
-
     return new Response(null, { status: 500 });
   }
 }
