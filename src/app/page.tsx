@@ -1,12 +1,13 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { Link, Logo } from "@/features/ui";
+import Footer from "@/features/ui/footer";
 
 async function Page() {
   const user = await currentUser();
 
   return (
-    <div className="h-screen grid grid-rows-[auto_1fr_auto] px-4">
-      <header className="max-w-screen-lg mx-auto w-full mt-4">
+    <div className="h-screen grid grid-rows-[auto_1fr_auto] max-w-screen-lg mx-auto px-4">
+      <header className="w-full mt-4">
         <div className="flex items-center justify-between p-4 bg-white border-2 border-black shadow-neo rounded-md">
           <Logo />
 
@@ -22,7 +23,7 @@ async function Page() {
         </div>
       </header>
 
-      <main className="w-full max-w-screen-lg mx-auto">
+      <main className="w-full">
         <div className="mt-40 text-left max-w-sm sm:max-w-xl">
           <h1 className="text-4xl sm:text-5xl font-semibold">
             Find your Favorite websites in seconds
@@ -37,23 +38,7 @@ async function Page() {
         </div>
       </main>
 
-      <footer className="max-w-screen-lg mx-auto w-full py-6 border-t-2 border-t-black">
-        <p className="text-sm [&>a]:font-medium [&>a]:underline [&>a]:underline-offset-4">
-          Crafted by{" "}
-          <a href="https://github.com/moaqz" target="_blank" rel="noreferrer">
-            moaqz
-          </a>
-          . The source code is on{" "}
-          <a
-            target="_blank"
-            href="https://github.com/moaqz/linb"
-            rel="noreferrer"
-          >
-            Github
-          </a>
-          .
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }
