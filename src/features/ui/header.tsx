@@ -3,8 +3,8 @@ import { Logo } from ".";
 
 export function Header() {
   return (
-    <header className="w-full mt-4">
-      <div className="flex items-center justify-between p-4 bg-white border-2 border-black shadow-neo rounded-md">
+    <header className="mt-4 w-full">
+      <div className="flex items-center justify-between rounded-md border-2 border-black bg-white p-4 shadow-neo">
         <Logo />
         <UserButton />
       </div>

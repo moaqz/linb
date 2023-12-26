@@ -10,9 +10,10 @@ export function Button(props: Props) {
 
   return (
     <button
+      type="button"
       className={`inline-flex items-center gap-1 border-2 ${
         color === "primary" ? "bg-yellow-300" : "bg-white"
-      } px-3 py-1.5 text-base border-black rounded shadow-neo text-black font-medium transition-shadow enabled:hover:shadow-none disabled:shadow-none`}
+      } rounded border-black px-3 py-1.5 text-base font-medium text-black shadow-neo transition-shadow enabled:hover:shadow-none disabled:shadow-none`}
       {...props}
     >
       {props.icon && props.icon}

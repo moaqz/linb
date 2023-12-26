@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="h-screen w-full grid place-content-center">
+    <main className="grid h-screen w-full place-content-center">
       {children}
     </main>
   );

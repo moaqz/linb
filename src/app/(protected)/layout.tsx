@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="h-screen flex flex-col justify-between max-w-screen-lg mx-auto px-4">
+    <div className="mx-auto flex h-screen max-w-screen-lg flex-col justify-between px-4">
       <Header />
       <main className="mt-12 flex-1">{children}</main>
       <Footer />

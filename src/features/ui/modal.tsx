@@ -1,11 +1,11 @@
 "use client";
 
 import {
+  KeyboardEvent,
   type ReactNode,
+  useCallback,
   useEffect,
   useRef,
-  useCallback,
-  KeyboardEvent,
 } from "react";
 import { XMarkIcon } from "./icons";
 
@@ -39,18 +39,18 @@ export function Modal({ title, children, open, onClose }: ModalProps) {
     }
 
     handleOnClose();
-  }, [open, onClose, handleOnClose]);
+  }, [open, handleOnClose]);
 
   return (
     <dialog
       ref={modalRef}
       onKeyDown={handleKeyDown}
-      className="backdrop:bg-black/40 w-full p-4 bg-white shadow-[2px_3px] border-4 border-black max-w-md"
+      className="w-full max-w-md border-4 border-black bg-white p-4 shadow-[2px_3px] backdrop:bg-black/40"
     >
       <div className="mb-4 flex items-center justify-between">
         <p className="text-xl font-semibold">{title}</p>
 
-        <button onClick={handleOnClose}>
+        <button type="button" onClick={handleOnClose}>
           <XMarkIcon width="24" height="24" />
         </button>
       </div>

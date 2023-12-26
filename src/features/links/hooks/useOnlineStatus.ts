@@ -8,7 +8,7 @@ function getServerSnapshot() {
   return true;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 function subscribe(callback: any) {
   window.addEventListener("online", callback);
   window.addEventListener("offline", callback);
@@ -23,7 +23,7 @@ export function useOnlineStatus() {
   const isOnline = useSyncExternalStore(
     subscribe,
     getSnapshot,
-    getServerSnapshot
+    getServerSnapshot,
   );
 
   return isOnline;

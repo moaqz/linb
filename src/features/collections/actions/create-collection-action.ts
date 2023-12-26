@@ -1,13 +1,13 @@
 "use server";
 
 import { AuthRequiredError } from "@/lib/expection";
-import { CreateCollectionSchema } from "../validations";
 import { db } from "@/server/connection";
 import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
 import { eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { ValiError, parse } from "valibot";
+import { CreateCollectionSchema } from "../validations";
 
 export const createCollectionAction = async (data: FormData) => {
   const user = await currentUser();

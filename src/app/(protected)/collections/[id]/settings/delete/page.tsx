@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { getCollectionInformation } from "@/features/collections/queries";
 import { ConfirmDeletion } from "@/features/collections/components";
+import { getCollectionInformation } from "@/features/collections/queries";
 
 async function Page({ params }: { params: { id: string } }) {
   const collectionId = Number(params.id);
@@ -12,11 +12,11 @@ async function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="space-y-4 max-w-lg">
+    <div className="max-w-lg space-y-4">
       <h2 className="text-xl font-semibold">Delete Collection</h2>
-      <div className="p-4 text-md bg-white text-gray-600 border-2 border-black font-semibold">
+      <div className="text-md border-2 border-black bg-white p-4 font-semibold text-gray-600">
         Permanently delete collection{" "}
-        <span className="text-black font-bold">{collection.name}</span>. This
+        <span className="font-bold text-black">{collection.name}</span>. This
         action is irreversible and requires an empty collection. If there are
         any links in this collection, you cannot delete it.
       </div>

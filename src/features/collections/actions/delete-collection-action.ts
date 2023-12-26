@@ -4,12 +4,12 @@ import { AuthRequiredError } from "@/lib/expection";
 import { db } from "@/server/connection";
 import { collections } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
+import { NeonDbError } from "@neondatabase/serverless";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { parse } from "valibot";
 import { DeleteCollectionSchema } from "../validations";
-import { NeonDbError } from "@neondatabase/serverless";
-import { redirect } from "next/navigation";
 
 export const deleteCollectionAction = async (data: FormData) => {
   const user = await currentUser();

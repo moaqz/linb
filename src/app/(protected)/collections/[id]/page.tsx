@@ -1,16 +1,16 @@
-import Link from "next/link";
 import { currentUser } from "@clerk/nextjs";
+import Link from "next/link";
 
+import { getCollectionById } from "@/features/collections/queries";
 import {
   CreateLinkModal,
   LinkCard,
   LinksEmptyState,
   Pagination,
 } from "@/features/links/components";
+import { getTotalUserLinks, getUserLinks } from "@/features/links/queries";
 import { ArrowLongLeftIcon } from "@/features/ui";
 import { AuthRequiredError } from "@/lib/expection";
-import { getTotalUserLinks, getUserLinks } from "@/features/links/queries";
-import { getCollectionById } from "@/features/collections/queries";
 import { notFound } from "next/navigation";
 
 const LIMIT_PER_PAGE = 12;
@@ -53,10 +53,10 @@ async function Page({
 
   return (
     <section className="pb-20">
-      <div className="flex items-center justify-between mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <Link
           href="/collections"
-          className="group text-xl sm:text-2xl font-semibold inline-flex items-center gap-1"
+          className="group inline-flex items-center gap-1 text-xl font-semibold sm:text-2xl"
         >
           <ArrowLongLeftIcon
             className="group-hover:-translate-x-1 group-hover:transition-transform"

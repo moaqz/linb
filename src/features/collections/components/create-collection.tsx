@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import { Button, Modal } from "@/features/ui";
 import { createCollectionAction } from "@collections/actions/create-collection-action";
@@ -67,13 +67,13 @@ function CreateCollection({ totalRecords }: { totalRecords: number }) {
           />
 
           {errors.name && (
-            <p role="alert" className="text-red-600 font-semibold">
+            <p role="alert" className="font-semibold text-red-600">
               {errors.name.message}
             </p>
           )}
 
           {errors.root && (
-            <p role="alert" className="text-red-600 font-semibold">
+            <p role="alert" className="font-semibold text-red-600">
               {errors.root.message}
             </p>
           )}

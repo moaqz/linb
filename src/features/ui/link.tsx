@@ -11,8 +11,8 @@ interface Props {
 export function Link({ size = "normal", ...rest }: Props) {
   return (
     <NextLink
-      className={`inline-flex items-center gap-1 border-2 bg-yellow-300 border-black rounded shadow-neo text-black font-medium transition-shadow hover:shadow-none ${
-        size === "small" ? "px-3 py-1.5 text-base" : "text-lg px-6 py-2"
+      className={`inline-flex items-center gap-1 rounded border-2 border-black bg-yellow-300 font-medium text-black shadow-neo transition-shadow hover:shadow-none ${
+        size === "small" ? "px-3 py-1.5 text-base" : "px-6 py-2 text-lg"
       }`}
       {...rest}
     />

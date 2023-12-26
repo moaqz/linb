@@ -16,7 +16,7 @@ export const deleteLinkAction = async (data: FormData) => {
   const linkId = Number(data.get("link_id"));
   const collectionId = data.get("collection_id");
 
-  if (isNaN(linkId) || linkId <= 0) {
+  if (Number.isNaN(linkId) || linkId <= 0) {
     return {
       error: "invalid link id",
     };

@@ -13,7 +13,7 @@ export async function getTotalUserLinks({
     .select({ counter: sql<number>`COUNT(*)` })
     .from(links)
     .where(
-      and(eq(links.user_id, userId), eq(links.collection_id, collectionId))
+      and(eq(links.user_id, userId), eq(links.collection_id, collectionId)),
     );
 
   return result;
@@ -39,7 +39,7 @@ export async function getUserLinks({
     })
     .from(links)
     .where(
-      and(eq(links.user_id, userId), eq(links.collection_id, collectionId))
+      and(eq(links.user_id, userId), eq(links.collection_id, collectionId)),
     )
     .orderBy(desc(links.created_at))
     .limit(limit)

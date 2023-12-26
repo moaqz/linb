@@ -5,7 +5,7 @@ function VisibilityBadge({ visibility }: { visibility: Visibility }) {
 
   return (
     <span
-      className={`border border-black py-1 px-2 rounded inline-block text-center min-w-[65px] font-medium text-white text-sm ${
+      className={`inline-block min-w-[65px] rounded border border-black px-2 py-1 text-center text-sm font-medium text-white ${
         isPrivate ? "bg-red-700" : "bg-green-700"
       }`}
     >

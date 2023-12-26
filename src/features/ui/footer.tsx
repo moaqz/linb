@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="w-full py-6 border-t-2 border-t-black">
+    <footer className="w-full border-t-2 border-t-black py-6">
       <p className="text-sm [&>a]:font-medium [&>a]:underline [&>a]:underline-offset-4">
         Crafted by{" "}
         <a href="https://github.com/moaqz" target="_blank" rel="noreferrer">

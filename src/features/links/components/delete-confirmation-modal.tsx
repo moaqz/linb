@@ -29,9 +29,10 @@ export function DeleteConfirmationModal({
   return (
     <>
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
         aria-label="Delete Link"
-        className="bg-red-50 text-red-500 border border-transparent  rounded p-1 hover:scale-110 transition-transform"
+        className="rounded border border-transparent bg-red-50  p-1 text-red-500 transition-transform hover:scale-110"
       >
         <TrashIcon width={16} height={16} />
       </button>

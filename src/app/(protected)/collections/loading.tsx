@@ -4,8 +4,8 @@ export default function Loading() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div className=" bg-gray-300 w-28 h-10 mb-4"></div>
-        <div className=" bg-gray-300 w-28 h-10 mb-4"></div>
+        <div className="mb-4 h-10 w-28 bg-gray-300" />
+        <div className="mb-4 h-10 w-28 bg-gray-300" />
       </div>
       <CollectionTableSkeleton />
     </div>

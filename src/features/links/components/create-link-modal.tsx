@@ -1,12 +1,12 @@
 "use client";
 
-import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import { Button, Modal } from "@/features/ui";
-import { CreateLinkType } from "../validations";
 import { createLinkAction } from "../actions/create-link-action";
+import { CreateLinkType } from "../validations";
 
 const pattern =
   /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&/=]*)$/;
@@ -38,7 +38,7 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
       toast.success("Collection created succesfully.");
       setIsOpen(false);
       reset();
-    }
+    },
   );
 
   return (
@@ -47,7 +47,7 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
 
       <Modal open={isOpen} onClose={() => setIsOpen(false)} title="Add Link">
         <form className="flex flex-col" onSubmit={onCreate}>
-          <label htmlFor="name" className="text-sm font-semibold mb-1">
+          <label htmlFor="name" className="mb-1 text-sm font-semibold">
             Name
           </label>
           <input
@@ -65,12 +65,12 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
           />
 
           {errors.name && (
-            <span role="alert" className="mt-2 text-red-600 font-semibold">
+            <span role="alert" className="mt-2 font-semibold text-red-600">
               {errors.name.message}
             </span>
           )}
 
-          <label htmlFor="url" className="text-sm font-semibold mt-4 mb-1">
+          <label htmlFor="url" className="mb-1 mt-4 text-sm font-semibold">
             Link
           </label>
           <input
@@ -85,18 +85,18 @@ export function CreateLinkModal({ collectionId }: { collectionId: string }) {
           />
 
           {errors.url && (
-            <span role="alert" className="mt-2 text-red-600 font-semibold">
+            <span role="alert" className="mt-2 font-semibold text-red-600">
               {errors.url.message}
             </span>
           )}
 
           {errors.root && (
-            <span role="alert" className="mt-2 text-red-600 font-semibold">
+            <span role="alert" className="mt-2 font-semibold text-red-600">
               {errors.root.message}
             </span>
           )}
 
-          <div className="space-x-3 mt-4">
+          <div className="mt-4 space-x-3">
             <Button
               type="button"
               color="secondary"

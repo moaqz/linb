@@ -1,12 +1,12 @@
 "use server";
 
 import { AuthRequiredError } from "@/lib/expection";
+import { db } from "@/server/connection";
+import { links } from "@/server/schema";
 import { currentUser } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 import { parse } from "valibot";
 import { CreateLinkSchema } from "../validations";
-import { links } from "@/server/schema";
-import { db } from "@/server/connection";
-import { revalidatePath } from "next/cache";
 
 export const createLinkAction = async (data: FormData) => {
   const user = await currentUser();

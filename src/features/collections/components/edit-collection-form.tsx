@@ -2,9 +2,9 @@
 
 import { toast } from "react-hot-toast";
 
-import { EditCollectionType } from "../validations";
 import { Button } from "@/features/ui";
 import { editCollectionAction } from "../actions/edit-collection-action";
+import { EditCollectionType } from "../validations";
 
 export function EditCollectionForm({
   id,
@@ -24,13 +24,13 @@ export function EditCollectionForm({
 
   return (
     <form
-      className="flex flex-col max-w-md gap-4"
+      className="flex max-w-md flex-col gap-4"
       action={editCollectionHandler}
     >
       <input type="number" id="id" name="id" defaultValue={id} hidden />
 
       <div>
-        <label htmlFor="name" className="text-sm font-semibold mb-1 block">
+        <label htmlFor="name" className="mb-1 block text-sm font-semibold">
           Collection name
         </label>
         <input
@@ -48,7 +48,7 @@ export function EditCollectionForm({
       <div>
         <label
           htmlFor="visibility"
-          className="text-sm font-semibold mb-1 block"
+          className="mb-1 block text-sm font-semibold"
         >
           Visibility
         </label>
@@ -57,12 +57,12 @@ export function EditCollectionForm({
           id="visibility"
           defaultValue={visibility}
           disabled
-          className="w-full border-2 bg-white border-black p-2 placeholder:text-black/70 focus:outline-double"
+          className="w-full border-2 border-black bg-white p-2 placeholder:text-black/70 focus:outline-double"
         >
           <option value="private">Private</option>
           <option value="public">Public</option>
         </select>
-        <p className="text-gray-500 text-sm mt-2">
+        <p className="mt-2 text-sm text-gray-500">
           The option to change collection visibility is currently under
           development and will be available soon.
         </p>
