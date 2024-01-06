@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    user: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  
+  web:
+    build: 
+      context: .
+    image: linb
+    depends_on:
+      - db
+    env_file: .env
+    restart: always
+    ports:
+      - 3000:3000
+
+volumes:
+  db-data:
